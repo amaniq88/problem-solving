@@ -36,32 +36,32 @@ return (`my name is ${CapitalFirst + " " + CapitalLast} I am ${obj.age} YO, and 
 //  fullName and tech if the applicant has more than one year of Experience
 
 // EX:
-// let cvs = [
-//     {
-//         firstName: "Jason",
-//         LastName: "James",
-//         yearsOfExperience: 20,
-//         tech: "JS"
-//     },
-//     {
-//         firstName: "Shira",
-//         LastName: null,
-//         yearsOfExperience: 5,
-//         tech: ".Net"
-//     },
-//     {
-//         firstName: "Dmitri",
-//         LastName: "Akkerman",
-//         yearsOfExperience: 1,
-//         tech: "Python"
-//     },
-//     {
-//         firstName: "Isabella",
-//         LastName: null,
-//         yearsOfExperience: 7,
-//         tech: "Java"
-//     }
-// ]
+//let cvs = [
+  //   {
+    //     firstName: "Jason",
+      //   LastName: "James",
+       //  yearsOfExperience: 20,
+       //  tech: "JS"
+    // },
+     //{
+      //   firstName: "Shira",
+        // LastName: null,
+        // yearsOfExperience: 5,
+        // tech: ".Net"
+    // },
+     //{
+       //  firstName: "Dmitri",
+        // LastName: "Akkerman",
+        // yearsOfExperience: 1,
+        // tech: "Python"
+     //},
+    // {
+      //   firstName: "Isabella",
+        // LastName: null,
+        // yearsOfExperience: 7,
+        // tech: "Java"
+   // }
+//]
 //
 //   ===>
 
@@ -88,32 +88,41 @@ return (`my name is ${CapitalFirst + " " + CapitalLast} I am ${obj.age} YO, and 
 // ------------------------
 const cvFormatter = (arr) => {
    let fullName ="";
-    const aarr = [];
-for (let i= 0; i<arr.lenght ; i++){
+    const NewArr = [];
+for (let i= 0; i<arr.length ; i++){
 
-    if (arr[i].firstName == 'null' ){
+    if (arr[i].firstName == null ){
         fullName = arr[i].LastName; 
-    }else if ( arr[i].LastName == 'null'){
+    }else if ( arr[i].lastName == null){
         fullName = arr[i].firstName;
+
     }
     else{
-        fullName = arr[i].firstName + " " + arr[i].LastName;
+        fullName = arr[i].firstName + " " + arr[i].lastName;
     }
+
 
     if ( arr[i].yearsOfExperience > 1 ){
     const applicant = {
         "fullName": fullName,
         "tech": arr[i].tech
+        
       };
-      aarr.push(applicant);
+
+
+      NewArr.push(applicant);
+
     }
 
 
 }
-return (aarr);
+
+return (NewArr);
 
 
 };
+
+
 
 
 // 3) ---------------------
@@ -137,8 +146,47 @@ return (aarr);
 
 // ------------------------
 const applicationsStatics = (arr) => {
-    // write your code here
-};
+//Java,Python,.Net,JS
+let result = {
+     python_Devs: 0,
+     javaScript_Devs: 0,
+     dotNet_Devs: 0,
+     java_Devs: 0,
+     totalApplicants: 0,
+     rejectedApplicants: 0,
+      }
+
+        for (let i= 0; i<arr.length ; i++){
+            if (arr[i].tech ==  "Java"){
+                result.java_Devs =   result.java_Devs + 1 ;
+            }
+            else if ( arr[i].tech == "Python" ){
+                result.python_Devs =  result.python_Devs + 1 ;
+            }
+            else if ( arr[i].tech == ".Net" ){
+                result.dotNet_Devs =  result.dotNet_Devs + 1 ;
+
+            }
+            else if (arr[i].tech == "JS"){
+                result.javaScript_Devs = result.javaScript_Devs +1
+
+            }
+        
+            if (arr[i].firstName == null || arr[i].lastName == null  || arr[i].yearsOfExperience <1   )
+             {
+            result.rejectedApplicants = result.rejectedApplicants +1 ;
+             }
+        }
+
+        result.totalApplicants =  result.java_Devs +   result.python_Devs +  result.dotNet_Devs +  result.javaScript_Devs ;
+        console.log(result);
+
+        return result ;
+    
+
+    };
+
+
 
 // 4) ---------------------
 //
@@ -148,7 +196,7 @@ const applicationsStatics = (arr) => {
 //  given the school data, calculate the average score of the students of each class in each grade
 //  then change the avg value for the class
 //  EX:
-
+/*
 let data = {
     SchoolName: "David Academy",
     Capacity: 1000,
@@ -255,21 +303,40 @@ let data = {
             ]
         },
     ],
-};
+};*/
 
 //  Note that:
 //  1- This is not the exact data you will be getting every time and the solution should be dynamic
 //  2- You need to round the average to the nearest lower number 
 
 const classesAvg = (data) => {
-    for ( let i=0 ; i< data.lenght ; i++){
-        for ( let j = 0 ; j<data.grades.classes.classScores.lenght ; j++){
-           const sum  = sum + data.grades.classes.classScores[j];
+   
+    for ( let i=0 ; i< data.grades.length ; i++){
+        let Grades = data.grades[i];
+        let ClassAr = Grades.classes; 
+        for (let j = 0 ; j<ClassAr.length ; j++ )
+        {
+            var sum = 0;
+            var AvgN = 0;
+        let scoorArr  = ClassAr[j].classScores;
+        console.log(scoorArr);
+            for (let k = 0 ; k < scoorArr.length ; k++ )
+            {
+               sum = sum + scoorArr[k] ;
+               
+            }
+            AvgN = parseInt (sum / scoorArr.length) ; 
+            ClassAr[j].avg = AvgN;
+           
+              
         }
-        data.grades.classes.avg[i] = sum /data.grades.classes.classScores.lenght  
-
+     
     }
+
     return data;
+  
 };
+
+
 
 module.exports = { objLat, cvFormatter, applicationsStatics, classesAvg };
