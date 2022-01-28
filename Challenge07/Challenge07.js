@@ -19,12 +19,13 @@
 // ------------------------
 
 const objLat = (obj) => {
-let CapitalFirst =obj.firstName;
+    let CapitalFirst =obj.firstName;
 CapitalFirst = CapitalFirst[0].toUpperCase() + CapitalFirst.substring(1);
 let CapitalLast = obj.lastName;
 CapitalLast = CapitalLast[0].toUpperCase() + CapitalLast.substring(1);
 return (`my name is ${CapitalFirst + " " + CapitalLast} I am ${obj.age} YO, and I love ${obj.hobby}.`)
 };
+
 
 // 2) ---------------------
 //
@@ -36,32 +37,32 @@ return (`my name is ${CapitalFirst + " " + CapitalLast} I am ${obj.age} YO, and 
 //  fullName and tech if the applicant has more than one year of Experience
 
 // EX:
-//let cvs = [
-  //   {
-    //     firstName: "Jason",
-      //   LastName: "James",
-       //  yearsOfExperience: 20,
-       //  tech: "JS"
-    // },
-     //{
-      //   firstName: "Shira",
-        // LastName: null,
-        // yearsOfExperience: 5,
-        // tech: ".Net"
-    // },
-     //{
-       //  firstName: "Dmitri",
-        // LastName: "Akkerman",
-        // yearsOfExperience: 1,
-        // tech: "Python"
-     //},
-    // {
-      //   firstName: "Isabella",
-        // LastName: null,
-        // yearsOfExperience: 7,
-        // tech: "Java"
-   // }
-//]
+// let cvs = [
+//     {
+//         firstName: "Jason",
+//         LastName: "James",
+//         yearsOfExperience: 20,
+//         tech: "JS"
+//     },
+//     {
+//         firstName: "Shira",
+//         LastName: null,
+//         yearsOfExperience: 5,
+//         tech: ".Net"
+//     },
+//     {
+//         firstName: "Dmitri",
+//         LastName: "Akkerman",
+//         yearsOfExperience: 1,
+//         tech: "Python"
+//     },
+//     {
+//         firstName: "Isabella",
+//         LastName: null,
+//         yearsOfExperience: 7,
+//         tech: "Java"
+//     }
+// ]
 //
 //   ===>
 
@@ -87,7 +88,7 @@ return (`my name is ${CapitalFirst + " " + CapitalLast} I am ${obj.age} YO, and 
 
 // ------------------------
 const cvFormatter = (arr) => {
-   let fullName ="";
+    let fullName ="";
     const NewArr = [];
 for (let i= 0; i<arr.length ; i++){
 
@@ -119,11 +120,7 @@ for (let i= 0; i<arr.length ; i++){
 
 return (NewArr);
 
-
 };
-
-
-
 
 // 3) ---------------------
 //
@@ -142,7 +139,7 @@ return (NewArr);
 // and fill it up based on the results
 
 //  Note that:
-//  1- rejectedApplicants are applications that has both the names empty or null and whoever have less than one year of Experience
+//  1- rejectedApplicants are applications that has both the names empty or null and whoever have one year or less of Experience
 
 // ------------------------
 const applicationsStatics = (arr) => {
@@ -171,8 +168,8 @@ let result = {
                 result.javaScript_Devs = result.javaScript_Devs +1
 
             }
-        
-            if (arr[i].firstName == null || arr[i].lastName == null  || arr[i].yearsOfExperience <1   )
+                    console.log(arr[i].yearsOfExperience)
+            if (arr[i].firstName == null && arr[i].lastName == null  || arr[i].yearsOfExperience <= 1   )
              {
             result.rejectedApplicants = result.rejectedApplicants +1 ;
              }
@@ -182,11 +179,7 @@ let result = {
         console.log(result);
 
         return result ;
-    
-
-    };
-
-
+    }
 
 // 4) ---------------------
 //
@@ -196,7 +189,7 @@ let result = {
 //  given the school data, calculate the average score of the students of each class in each grade
 //  then change the avg value for the class
 //  EX:
-/*
+
 let data = {
     SchoolName: "David Academy",
     Capacity: 1000,
@@ -303,14 +296,13 @@ let data = {
             ]
         },
     ],
-};*/
+};
 
 //  Note that:
 //  1- This is not the exact data you will be getting every time and the solution should be dynamic
 //  2- You need to round the average to the nearest lower number 
 
 const classesAvg = (data) => {
-   
     for ( let i=0 ; i< data.grades.length ; i++){
         let Grades = data.grades[i];
         let ClassAr = Grades.classes; 
@@ -334,9 +326,7 @@ const classesAvg = (data) => {
     }
 
     return data;
-  
-};
-
-
+  };
 
 module.exports = { objLat, cvFormatter, applicationsStatics, classesAvg };
+
