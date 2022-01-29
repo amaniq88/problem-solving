@@ -1,5 +1,5 @@
+<<<<<<< exercise02-1
 "use strict";
-
 // 1) ---------------------
 //
 //  using the (objLat) function; return the formatted text based on the provided object as the example:
@@ -19,12 +19,13 @@
 // ------------------------
 
 const objLat = (obj) => {
-let CapitalFirst =obj.firstName;
+    let CapitalFirst =obj.firstName;
 CapitalFirst = CapitalFirst[0].toUpperCase() + CapitalFirst.substring(1);
 let CapitalLast = obj.lastName;
 CapitalLast = CapitalLast[0].toUpperCase() + CapitalLast.substring(1);
 return (`my name is ${CapitalFirst + " " + CapitalLast} I am ${obj.age} YO, and I love ${obj.hobby}.`)
 };
+
 
 // 2) ---------------------
 //
@@ -87,34 +88,39 @@ return (`my name is ${CapitalFirst + " " + CapitalLast} I am ${obj.age} YO, and 
 
 // ------------------------
 const cvFormatter = (arr) => {
-   let fullName ="";
-    const aarr = [];
-for (let i= 0; i<arr.lenght ; i++){
+    let fullName ="";
+    const NewArr = [];
+for (let i= 0; i<arr.length ; i++){
 
-    if (arr[i].firstName == 'null' ){
+    if (arr[i].firstName == null ){
         fullName = arr[i].LastName; 
-    }else if ( arr[i].LastName == 'null'){
+    }else if ( arr[i].lastName == null){
         fullName = arr[i].firstName;
+
     }
     else{
-        fullName = arr[i].firstName + " " + arr[i].LastName;
+        fullName = arr[i].firstName + " " + arr[i].lastName;
     }
+
 
     if ( arr[i].yearsOfExperience > 1 ){
     const applicant = {
         "fullName": fullName,
         "tech": arr[i].tech
+        
       };
-      aarr.push(applicant);
+
+
+      NewArr.push(applicant);
+
     }
 
 
 }
-return (aarr);
 
+return (NewArr);
 
 };
-
 
 // 3) ---------------------
 //
@@ -133,12 +139,50 @@ return (aarr);
 // and fill it up based on the results
 
 //  Note that:
-//  1- rejectedApplicants are applications that has both the names empty or null and whoever have less than one year of Experience
+//  1- rejectedApplicants are applications that has both the names empty or null and whoever have one year or less of Experience
 
 // ------------------------
 const applicationsStatics = (arr) => {
-    // write your code here
-};
+//Java,Python,.Net,JS
+let result = {
+     python_Devs: 0,
+     javaScript_Devs: 0,
+     dotNet_Devs: 0,
+     java_Devs: 0,
+     totalApplicants: 0,
+     rejectedApplicants: 0,
+      }
+
+        for (let i= 0; i<arr.length ; i++){
+            if (arr[i].tech ==  "Java"){
+                result.java_Devs =   result.java_Devs + 1 ;
+            }
+            else if ( arr[i].tech == "Python" ){
+                result.python_Devs =  result.python_Devs + 1 ;
+            }
+            else if ( arr[i].tech == ".Net" ){
+                result.dotNet_Devs =  result.dotNet_Devs + 1 ;
+
+            }
+            else if (arr[i].tech == "JS"){
+                result.javaScript_Devs = result.javaScript_Devs +1
+
+            }
+                    console.log(arr[i].yearsOfExperience)
+            if (arr[i].firstName == null && arr[i].lastName == null  || arr[i].yearsOfExperience <= 1   )
+             {
+            result.rejectedApplicants = result.rejectedApplicants +1 ;
+             }
+        }
+
+        result.totalApplicants =  result.java_Devs +   result.python_Devs +  result.dotNet_Devs +  result.javaScript_Devs ;
+        console.log(result);
+
+        return result ;
+    }
+// 
+// added 
+console.log();
 
 // 4) ---------------------
 //
@@ -262,14 +306,32 @@ let data = {
 //  2- You need to round the average to the nearest lower number 
 
 const classesAvg = (data) => {
-    for ( let i=0 ; i< data.lenght ; i++){
-        for ( let j = 0 ; j<data.grades.classes.classScores.lenght ; j++){
-           const sum  = sum + data.grades.classes.classScores[j];
+    for ( let i=0 ; i< data.grades.length ; i++){
+        let Grades = data.grades[i];
+        let ClassAr = Grades.classes; 
+        for (let j = 0 ; j<ClassAr.length ; j++ )
+        {
+            var sum = 0;
+            var AvgN = 0;
+        let scoorArr  = ClassAr[j].classScores;
+        console.log(scoorArr);
+            for (let k = 0 ; k < scoorArr.length ; k++ )
+            {
+               sum = sum + scoorArr[k] ;
+               
+            }
+            AvgN = parseInt (sum / scoorArr.length) ; 
+            ClassAr[j].avg = AvgN;
+           
+              
         }
-        data.grades.classes.avg[i] = sum /data.grades.classes.classScores.lenght  
-
+     
     }
+
     return data;
-};
+  };
 
 module.exports = { objLat, cvFormatter, applicationsStatics, classesAvg };
+
+=======
+>>>>>>> main

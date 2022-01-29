@@ -153,12 +153,13 @@ const getStudents = (arr) => {
      let  a = new obj(courses[i].Students[j] , courses[i].course ); 
  
      StudCourArray.push( a);
+
      }
 
    }
 }
   }
-  
+
 
 return StudCourArray;
 };
@@ -171,3 +172,4 @@ module.exports = {
   getInfo,
   getStudents,
 };
+
