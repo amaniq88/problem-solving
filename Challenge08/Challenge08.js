@@ -28,16 +28,16 @@
 
 const customerAndAge = (obj) => {
     const propertyNames = Object.keys(obj);
+    
     const propertyAge = Object.values(obj);
-    var customer= "Customer Name :"+ propertyNames +", Age :"+ propertyAge ;
+    const customer = [];
+    for (let i = 0 ; i< propertyNames.length ; i++){
+       customer.push("Customer Name :"+ propertyNames[i] +" , Age :"+ propertyAge[i]);
+       
+    }
     return customer;
+   
     } ;
-//Object.keys(obj);
-
-//const propertyValues = Object.values(obj);
-
-
-
 
 // -------------------------------------------------------------------------------------------------------
 // Challenge 02
@@ -63,9 +63,13 @@ const customerAndAge = (obj) => {
 // -------------------------------------------------------------------------------------------------------
 
 const getEntries = (obj) => {
-  // write your code here
+  const recipeArr = [] ;
+for (const [key, value] of Object.entries(obj)) {
+  recipeArr.push(`${key}: ${value}`);
+  
+}
+    return recipeArr;
 };
-
 // -------------------------------------------------------------------------------------------------------
 // Challenge 03
 
@@ -104,8 +108,14 @@ const courses = [
 const getInfo = (arr) => {
   let coursesName = [];
   let studentsName = [];
-  // write your code here
-
+for (let i = 0 ; i < arr.length ; i++ )
+{
+  coursesName.push(arr[i].course);
+   for (let j = 0 ; j < arr[i].Students.length; j++)
+   {
+      studentsName.push(arr[i].Students[j])
+   }
+}
   return { coursesName, studentsName };
 };
 
@@ -128,9 +138,31 @@ const getInfo = (arr) => {
 //  ------------------------------------------------------------------------------------------------------
 
 const getStudents = (arr) => {
-  // write your code here
+  const StudCourArray = [];
+  function obj(Student,course){  
+    this.Student=Student;  
+    this.course=course;  
+    }  
+  for (let k = 0 ; k < arr.length ; k ++){
+    for (let i = 0 ; i < courses.length ; i++ )
+{
+   for (let j = 0 ; j < courses[i].Students.length; j++)
+   {
+     if ( arr[k] == courses[i].Students[j] )
+     {
+     let  a = new obj(courses[i].Students[j] , courses[i].course ); 
+ 
+     StudCourArray.push( a);
+   //  StudCourArray.push();
+     }
 
+   }
+}
+  }
+
+return StudCourArray;
 };
+
 
 module.exports = {
   customerAndAge,
