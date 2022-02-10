@@ -145,32 +145,14 @@ result.push(element)
 // ==> 200
 // ------------------------
 const mostExpensive = (budget, mouseArray, keyBoardArray) => {
-    var sumArray = [];
-  for ( let i = 0; i<mouseArray.length ; i++)
-    {
-      for ( let j = 0; j<keyBoardArray.length ; j++)
-      {
-        sumArray.push(keyBoardArray[j]+mouseArray[i]);
-        
-      }
-    }
-    
-   sumArray.sort(function(a, b){return b-a});
-   let i=0;
-   let price = 0;
-  // console.log(sumArray);
-  for (let k = 0 ; k< sumArray.length ; k++)
-  {
-    if ( sumArray[k]<= budget){
-      
-      price = sumArray[k];
-  
-  break;
-    }
-  
-  }
-          return price;
-  
-  }
+    var price = 0;
+    mouseArray.forEach(mouse =>{
+      keyBoardArray.forEach(keyboard => {
+        ((mouse + keyboard) > price && ( mouse + keyboard ) <= budget ) ? 
+        price = mouse + keyboard : "";
+      });
+    });
+    return price;
+}
 
 module.exports = { arrInc, roundDecimals, employeesBonus, mostExpensive };
